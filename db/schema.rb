@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421041839) do
+ActiveRecord::Schema.define(version: 20150422085825) do
+
+  create_table "answers", force: :cascade do |t|
+    t.string   "body"
+    t.integer  "word_id"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.integer  "exam_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "fullname"
@@ -22,6 +44,14 @@ ActiveRecord::Schema.define(version: 20150421041839) do
     t.string   "password_confirmation"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.string   "remember_digest"
+  end
+
+  create_table "words", force: :cascade do |t|
+    t.string   "body"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end
