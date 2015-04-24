@@ -54,8 +54,11 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   root 'static_pages#home'
-  resources :users
-  get 'login'  => 'sessions#new'
+  resources :users do
+    resources :followers, only: :index
+    resources :followings, only: :index
+  end
+  get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   get  'signup' => 'users#new'
   delete 'logout' => 'sessions#destroy'
@@ -65,4 +68,6 @@ Rails.application.routes.draw do
     resources :words
     resources :users
   end
+  resources :relationships, only: [:create, :destroy]
+  resources :words, only: :index
 end

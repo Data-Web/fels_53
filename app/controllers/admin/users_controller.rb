@@ -1,9 +1,9 @@
 class Admin::UsersController < ApplicationController
-  before_action :login_redirect_admin
-  
+  before_action :logged_in_user, only: [:index, :show, :edit, :update]
+  before_action :correct_user, only: [:edit, :update]
+
   def index
-    @users = User.paginate page: params[:page],
-      per_page: 10
+    @users = User.paginate page: params[:page], per_page: 10
   end
 
   def new
@@ -16,8 +16,7 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find params[:id]
-    if @user.update_attributes user_params
-      flash.now[:success] = "Update user success"
+    if @user.update_attributes user_params 
       redirect_to @user
     else
       render "edit"
@@ -26,9 +25,8 @@ class Admin::UsersController < ApplicationController
   
   def create
     @user = User.new user_params
-    if @user.save
-      flash.now[:success] = "Create user success"
-      redirect_to admin_users_path
+    if @user.save 
+      redirect_to @user
     else
       render "new"
     end
@@ -38,15 +36,24 @@ class Admin::UsersController < ApplicationController
     @user = User.find params[:id]
   end
 
-  def destroy
-    User.find(params[:id]).destroy
-    redirect_to admin_users_path
+  private
+
+  def user_params
+    params.require(:user).permit :fullname, :email, :password, :password_confirmation, :avatar
   end
 
-  private
-  
-  def user_params
-    params.require(:user).permit :fullname, :email,
-      :password, :password_confirmation, :avatar
+  def correct_user
+    @user = User.find params[:id]
+    if @user != current_user && current_user.admin != true
+      flash[:danger] = "You haven't permisson"
+      redirect_to users_path
+    end
+  end
+
+  def logged_in_user
+    unless logged_in?
+      flash[:danger] = "Please log in take access system"
+      redirect_to root_path
+    end
   end
 end

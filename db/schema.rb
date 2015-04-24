@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150422085825) do
+ActiveRecord::Schema.define(version: 20150427074114) do
 
   create_table "answers", force: :cascade do |t|
     t.string   "body"
@@ -27,10 +27,29 @@ ActiveRecord::Schema.define(version: 20150422085825) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "questions", force: :cascade do |t|
-    t.string   "content"
+  create_table "lessons", force: :cascade do |t|
+    t.integer  "category_id"
     t.integer  "user_id"
-    t.integer  "exam_id"
+    t.integer  "count_correct"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id"
+  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
+
+  create_table "results", force: :cascade do |t|
+    t.integer  "lesson_id"
+    t.integer  "word_id"
+    t.integer  "answer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
