@@ -53,8 +53,12 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  
   root 'static_pages#home'
-  resources :users
+  resources :users do
+    resources :followers, only: :index
+    resources :followings, only: :index
+  end
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   get  'signup' => 'users#new'
@@ -65,4 +69,5 @@ Rails.application.routes.draw do
     resources :words
     resources :users
   end
+  resources :relationships, only: [:create, :destroy]
 end

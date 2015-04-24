@@ -38,7 +38,7 @@ class Admin::WordsController < Admin::AdminController
   end
 
   private
-  
+
   def word_params
     params.require(:word).permit :body, :category_id,
       answers_attributes: [:id, :body, :status, :_destroy]
