@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   attr_accessor :remember_token
-  scope :by_user, -> id {where.not(id: id)}
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -38,6 +37,7 @@ class User < ActiveRecord::Base
   end
 
   private
+  
   def upload_size
     if avatar.size > 5.megabytes
       errors.add :avatar, "should be less than 5MB"
