@@ -12,6 +12,7 @@
     </tr>
   </thead>
   <tbody>
+<<<<<<< HEAD
     <% @words.each do |word| %>
       <tr>
       <td><%= word.id %></td>
@@ -23,3 +24,15 @@
   </tbody>
 </table>
 <%= will_paginate %>
+=======
+    <% @words.each do |w| %>
+      <tr>
+      <td><%= w.id %></td>
+      <td><%= w.body %></td>
+      <td><%= link_to "Edit", edit_admin_word_path(w) %></td>
+      <td><%= link_to "Delete", admin_word_path(w),  method: :delete, data: {confirm: "You sure?"} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+>>>>>>> Admin manager: word and answer

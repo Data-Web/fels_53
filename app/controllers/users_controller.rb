@@ -37,7 +37,11 @@ class UsersController < ApplicationController
   end
 
   private
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> Admin manager: word and answer
   def user_params
     params.require(:user).permit :fullname, :email, :password, :password_confirmation, :avatar
   end
