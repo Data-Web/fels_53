@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class Admin::UsersController < ApplicationController
   before_action :login_redirect_admin
 
@@ -25,8 +26,7 @@ class Admin::UsersController < ApplicationController
   
   def create
     @user = User.new user_params
-    if @user.save
-      flash.now[:success] = "Create user success"
+    if @user.save 
       redirect_to admin_users_path
     else
       render "new"
@@ -43,7 +43,7 @@ class Admin::UsersController < ApplicationController
   end
 
   private
-  
+
   def user_params
     params.require(:user).permit :fullname, :email,
       :password, :password_confirmation, :avatar
