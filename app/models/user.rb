@@ -1,8 +1,5 @@
 class User < ActiveRecord::Base
   attr_accessor :remember_token
-<<<<<<< HEAD
-  
-=======
   scope :without_admin_user, -> id {where.not(id: id)}
   
   has_many :active_relationships, class_name:  "Relationship",
@@ -14,8 +11,6 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
-
->>>>>>> Admin manager: word and answer
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :fullname, presence: true
@@ -64,11 +59,7 @@ class User < ActiveRecord::Base
   end
 
   private
-<<<<<<< HEAD
-  
-=======
 
->>>>>>> Admin manager: word and answer
   def upload_size
     if avatar.size > 5.megabytes
       errors.add :avatar, "should be less than 5MB"

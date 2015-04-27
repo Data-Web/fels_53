@@ -5,11 +5,7 @@ class Admin::WordsController < Admin::AdminController
 
   def new
     @word = Word.new
-<<<<<<< HEAD
     4.times{@word.answers.build}
-=======
-    2.times{@word.answers.build}
->>>>>>> Admin manager: word and answer
   end
 
   def edit
@@ -42,10 +38,7 @@ class Admin::WordsController < Admin::AdminController
   end
 
   private
-<<<<<<< HEAD
-  
-=======
->>>>>>> Admin manager: word and answer
+
   def word_params
     params.require(:word).permit :body, :category_id,
       answers_attributes: [:id, :body, :status, :_destroy]

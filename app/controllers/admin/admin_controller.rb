@@ -5,6 +5,7 @@ class Admin::AdminController < ActionController::Base
   before_action :login_redirect
 
   protected
+  
   def login_redirect
     unless logged_in? && is_admin?
       redirect_to root_path

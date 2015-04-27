@@ -12,6 +12,7 @@ class Word < ActiveRecord::Base
 
   accepts_nested_attributes_for :answers, allow_destroy: true
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   private
 =======
@@ -21,34 +22,36 @@ class Word < ActiveRecord::Base
     notlean  = "words.id NOT IN (SELECT word_id FROM results WHERE lesson_id IN 
           (SELECT id FROM lessons WHERE user_id = #{user.id}))"
     category = "words.category_id = #{params[:category_id]}"
+=======
+>>>>>>> search word
 
-    if params[:category_id] != nil && params[:status].blank?
-      joins(:answers).where(category)
-        .select("words.body as word_name, answers.body as answer_name")
-        .where("answers.status = 't'")
+  scope :search_word, -> params, user {
+    where_type = params[:status] == "notlean" ? "NOT IN" : "IN"
 
-    elsif params[:category_id] != nil && params[:status] == 'leanned'
-      joins(:answers)
-        .where(category)
-        .where(leanned)
-        .select("words.body as word_name, answers.body as answer_name")
-        .where("answers.status = 't'")
+    query_status = "words.id #{where_type}(SELECT word_id FROM results WHERE lesson_id IN 
+      (SELECT id FROM lessons WHERE user_id = #{user.id}))" if params[:status]
 
-    elsif params[:category_id] != nil && params[:status] == 'notlean'
-      joins(:answers)
-        .where(category)
-        .where(notlean)
-        .select("words.body as word_name, answers.body as answer_name")
-        .where("answers.status = 't'")
-
-    elsif params[:category_id] != nil && params[:status] == 'all'
-      joins(:answers).where(category)
-        .select("words.body as word_name, answers.body as answer_name")
-        .where("answers.status = 't'")
+    if params[:category_id] && params[:category_id] != ''
+      if params[:status] != ''
+        joins(:answers).select("words.body as word_name, answers.body as answer_name")
+          .where("words.category_id = #{params[:category_id]}")
+          .where(query_status)
+          .where("answers.status = 't'")
+      else
+        joins(:answers).select("words.body as word_name, answers.body as answer_name")
+          .where("words.category_id = #{params[:category_id]}")
+          .where("answers.status = 't'")
+      end
     else
-      joins(:answers).select("words.body as word_name, answers.body as answer_name")
-        .where("answers.status = 't'")
-    end
+      if params[:status] != ''
+        joins(:answers).select("words.body as word_name, answers.body as answer_name")
+          .where(query_status)
+          .where("answers.status = 't'")
+      else
+        joins(:answers).select("words.body as word_name, answers.body as answer_name")
+          .where("answers.status = 't'")
+      end
+    end 
   }
 
   private

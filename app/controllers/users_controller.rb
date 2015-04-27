@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :show, :edit, :update]
   before_action :correct_user, only: [:edit, :update]
-
   def index
     @users = User.without_admin_user(current_user.id).paginate page: params[:page], per_page: 10
   end
@@ -37,11 +36,7 @@ class UsersController < ApplicationController
   end
 
   private
-<<<<<<< HEAD
-  
-=======
 
->>>>>>> Admin manager: word and answer
   def user_params
     params.require(:user).permit :fullname, :email, :password, :password_confirmation, :avatar
   end
@@ -51,13 +46,6 @@ class UsersController < ApplicationController
     if @user != current_user && current_user.admin != true
       flash[:danger] = "You haven't permisson"
       redirect_to users_path
-    end
-  end
-
-  def logged_in_user
-    unless logged_in?
-      flash[:danger] = "Please log in take access system"
-      redirect_to root_path
     end
   end
 end
