@@ -1,0 +1,6 @@
+<tr>
+  <td><%= word.body %></td>
+  <% if word.answers.correct.any? %>
+    <td><%= word.answers.correct.first.body %></td>
+  <% end %>
+</tr>

@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
 
   def login_redirect_admin
     unless logged_in? && is_admin?
+      flash[:danger] = "You don't have permission to access on system"
       redirect_to root_path
     end
   end

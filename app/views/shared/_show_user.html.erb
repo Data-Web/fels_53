@@ -11,7 +11,7 @@
   <div class="col-md-9">
     <%= render 'users/follow_form' if logged_in? %>
     <h1 align="left">
-      <%= link_to "#" do %>
+      <%= link_to words_path do %>
         <span class="label label-default">Words</span>
       <% end %>
       <%= link_to "#", class: "lesson" do %>

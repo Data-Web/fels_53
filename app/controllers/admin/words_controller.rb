@@ -1,4 +1,6 @@
-class Admin::WordsController < Admin::AdminController
+class Admin::WordsController < ApplicationController
+  before_action :login_redirect_admin
+  
   def index   
     @words = Word.paginate page: params[:page], per_page: 15
   end

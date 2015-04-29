@@ -1,0 +1,30 @@
+<%= form_for(words_path, method: "get") do |f| %>
+
+  <div class="col-md-2">
+    <%= select_tag "category_id",
+          options_from_collection_for_select(@categories, "id", "name", params[:category_id]),
+          include_blank: "All" %>
+  </div>
+  
+  <% radio_button_array = ['learned', 'notlearn', ''] %>
+  <% radio_button_array.each do |radio_button| %>
+    <div class="col-md-2">
+      <%= f.label class: "radio" do %>
+        <%= radio_button_tag("status", radio_button,
+              checked = (params[:status] == radio_button ||  params[:status].blank?)) %>
+        <%= radio_button != '' ? radio_button : "All"  %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= f.submit "Search", class: "btn btn-primary" %>
+<% end %>
+<br/>
+<table class="table table-bordered">
+  <tbody>
+    <% if @words.any? %>
+      <%= render @words %>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate %>
