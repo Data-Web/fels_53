@@ -6,6 +6,13 @@ class ApplicationController < ActionController::Base
 
   protected
   
+  def logged_in_user
+    unless logged_in?
+      flash[:danger] = "Please log in take access system"
+      redirect_to login_path
+    end
+  end
+
   def login_redirect_admin
     unless logged_in? && is_admin?
       redirect_to root_path

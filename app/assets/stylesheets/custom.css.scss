@@ -36,7 +36,6 @@ h1 {
   font-size: 3em;
   letter-spacing: -2px;
   margin-bottom: 30px;
-  text-align: center;
 }
 
 h2 {
@@ -101,41 +100,45 @@ footer {
   cursor:pointer
 }
 .stats {
-overflow: auto;
-margin-top: 0;
-padding: 8px 0 0 35px;
-a {
-float: left;
-padding: 0 10px;
-border-left: 1px solid $gray-lighter;
-color: gray;
-&:first-child {
-padding-left: 0;
-border: 0;
+  overflow: auto;
+  margin-top: 0;
+  padding: 8px 0 0 35px;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid $gray-lighter;
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: blue;
+    }
+  }
+  strong {
+    display: block;
+  }
 }
-&:hover {
-text-decoration: none;
-color: blue;
-}
-}
-strong {
-display: block;
-}
-}
+
 .user_avatars {
-overflow: auto;
-margin-top: 10px;
-.gravatar {
-margin: 1px 1px;
+  overflow: auto;
+  margin-top: 10px;
+  .gravatar {
+    margin: 1px 1px;
+  }
+  a {
+    padding: 0;
+  }
 }
-a {
-padding: 0;
-}
-}
-.users.follow{
+
+.users.follow 
+{
   padding: 0;
 }
-a:hover{
+a:hover
+{
   text-decoration:none;
 }
 a.lesson
@@ -160,11 +163,13 @@ ul.follow li img
 }
 .user_info
 {
-  text-align:center;
+  text-align:center; 
 }
+
 .word_category_id{
   width: 250px;
 }
+
 ul.lesson-categories{
   margin:0px;
   padding: 0px;
