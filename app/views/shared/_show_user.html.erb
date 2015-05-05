@@ -20,5 +20,18 @@
     </h1>
     <br/>
     <h3>Activities<hr/></h3>
+      <ul class="lesson-categories">
+        <% @user_lessons.each do |user_lesson| %>
+          <li>
+            <h4>
+              <b><%= user_lesson.fullname %></b>
+              leanned: <%= user_lesson.category_name %>
+            <h4>
+            <small>
+              Correct: <%= user_lesson.count_correct %>/20
+            </small>
+          </li>
+        <% end %>
+      </ul>
   </div>
 </div>
