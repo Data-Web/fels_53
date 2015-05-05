@@ -1,4 +1,6 @@
-class Admin::CategoriesController < Admin::AdminController
+class Admin::CategoriesController < ApplicationController
+  before_action :login_redirect_admin
+  
   def index
     @categories = Category.paginate page: params[:page], per_page: 15
   end
