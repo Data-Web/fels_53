@@ -25,6 +25,7 @@
           </a>
           <ul class="dropdown-menu">
             <li><%= link_to "Profile", edit_user_path(current_user.id) %></li>
+            <li><%= link_to "Result", lesson_learned_path %></li>
             <li><%= link_to "Logout", logout_path, method: "delete" %></li>
           </ul>
         </li>

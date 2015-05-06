@@ -4,5 +4,6 @@ class StaticPagesController < ApplicationController
   def home
     @user = User.find current_user
     @user_lessons = Lesson.lesson_user current_user
+    @activities = current_user.activities
   end
 end

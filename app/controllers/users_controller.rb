@@ -35,6 +35,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find params[:id]
     @user_lessons = Lesson.lesson_user @user
+    @activities = @user.activities
   end
 
   private
