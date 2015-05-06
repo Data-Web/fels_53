@@ -9,7 +9,8 @@ class Lesson < ActiveRecord::Base
   scope :lesson_user, ->user {where("lessons.user_id IN
     (SELECT followed_id FROM relationships WHERE follower_id = '#{user.id}')
     OR lessons.user_id = '#{user.id}'")}
-  
+
+  scope :lesson_learned, ->user {(where user_id: user.id)}
 
   accepts_nested_attributes_for :results, allow_destroy: true
   before_save :sum_correct
