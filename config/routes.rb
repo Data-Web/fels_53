@@ -69,7 +69,9 @@ Rails.application.routes.draw do
     resources :words
     resources :users
   end
-  
   resources :relationships, only: [:create, :destroy]
   resources :words, only: :index
+  resources :categories, only: :index do
+    resources :lessons, only: [:new, :create, :show]
+  end
 end
