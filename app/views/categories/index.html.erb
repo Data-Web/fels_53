@@ -1,0 +1,13 @@
+<ul class="lesson-categories">
+  <% @categories.each do |categorie| %>
+    <li>
+      <h1>
+        <%= categorie.name %>
+        <%= link_to new_category_lesson_path(categorie), style: "padding-left: 800px;" do %>
+          <span class="label label-default">Start</span>
+        <% end %>
+      <h1>  
+    </li>
+  <% end %>
+</ul>
+<%= will_paginate %>

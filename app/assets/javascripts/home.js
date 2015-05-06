@@ -18,4 +18,14 @@ $(document).ready(function() {
     $(this).prop('checked', true);
     $(this).prop('value', true);
   })
+  
+  numberMax = parseInt($('.result:last').attr('number'));
+  $(".control").click(function(){
+    var number = 0;
+    id = $(this).attr('id');
+    number = id == "next" ? parseInt($('.result:visible').attr('number')) + 1
+                     : parseInt($('.result:visible').attr('number')) - 1
+    $('.result').hide();
+    $('.result').eq(number).show();
+  })
 })

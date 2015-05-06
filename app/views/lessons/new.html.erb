@@ -1,0 +1,15 @@
+<h1>Lesson | <span class="panel-title"><%= @category.name %></span></h1>
+<div class="container">
+  <div class="row" id="lesson">
+    <%= form_for [@category, @lesson] do |f| %>
+      <%= f.fields_for :results do |builder| %>
+        <%= render 'results', f: builder %>
+      <% end %>
+      <div class="col-md-4 text-right">
+        <%= link_to "Prev", "#", class: "btn btn-primary control", id: "prev" %>
+        <%= link_to "Next", "#", class: "btn btn-primary control", id: "next" %>
+        <%= button_tag 'Submit', class: 'btn btn-primary', title: 'Submit' %>
+      </div>
+    <% end %>
+  </div>
+</div> 

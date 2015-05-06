@@ -15,16 +15,19 @@ class Word < ActiveRecord::Base
     WHERE lesson_id IN (SELECT id FROM lessons WHERE user_id = '#{user.id}'))")}
 
   scope :words_category, ->category_id {where category_id: category_id if category_id.present?}
+  
+  scope :random_words, ->user {Word.notlearn(user).order("random()").limit(20)}
+  
 
   private
-  
+
   def check_status
     if answers.length < 2
       errors.add :base, "Minimum 2 characters"
     elsif answers.select{|answer| answer.status}.count == 0  
-      errors.add(:base, "Please select one correct answer")
+      errors.add :base, "Please select one correct answer"
     elsif answers.select{|answer| answer.status}.count > 1 
-      errors.add(:base, "Only one correct answer is selected")
+      errors.add :base, "Only one correct answer is selected"
     end
   end
 end
