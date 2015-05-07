@@ -7,8 +7,8 @@
   <div class="input-group">
     <%= builder.text_area :body, class: "form-control" %>
     <%= link_to "#", class: "input-group-addon delete_ans",
-          id: "#{builder.options[:child_index]}" do %>
-        <i class="glyphicon glyphicon-remove"></i>
+          id: builder.index do %>
+      <i class="glyphicon glyphicon-remove"></i>
     <% end %>
   </div>
 </div>

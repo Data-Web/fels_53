@@ -1,4 +1,7 @@
-<h1>Lesson | <span class="panel-title"><%= @category.name %></span></h1>
+<h1>Lessons | <span class="panel-title">
+  <%= @category.name %></span>
+</h1>
+<h3 class='realtime'></h3>
 <div class="container">
   <div class="row" id="lesson">
     <%= form_for [@category, @lesson] do |f| %>

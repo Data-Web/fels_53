@@ -3,13 +3,13 @@
   <span><%= @category.name %></span>
   Result <span><%= "#{@lesson.count_correct}/#{@lesson.results.count}" %></span>
 </h1>
+<input type="hidden" value="<%= params[:check] %>" id="page"/>
 <div class="container">
   <table class="table table-bordered">
     <thead>
       <tr>
         <th>Result</th>
         <th>Word</th>
-        <th>Your Answer</th>
         <th>Answer</th>
       </tr>
     </thead>
@@ -24,13 +24,6 @@
             <% end %>
           </td>
           <td><%= result.word.body %></td>
-          <td>
-            <% if result.answer.nil? %>
-              <span>.....Nil.....</span>
-            <% else %>
-              <%= result.answer.body %>
-            <% end %>
-          </td>
           <td>
             <%= result.word.answers.find_by(status: true).body %>
           </td>

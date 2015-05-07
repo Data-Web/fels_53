@@ -35,11 +35,7 @@ module SessionsHelper
 
   def redirect
     if logged_in?
-      if is_admin? 
-        redirect_to admin_users_path
-      else
-        redirect_to root_path
-      end
+      redirect_to is_admin? ? admin_users_path : root_path
     end
   end
   

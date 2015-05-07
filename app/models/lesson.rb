@@ -13,11 +13,11 @@ class Lesson < ActiveRecord::Base
     OR lessons.user_id = '#{user.id}'")}
   
   accepts_nested_attributes_for :results, allow_destroy: true
+  
   before_save :sum_correct
   after_save :lesson_activity
 
   private
-  
   def sum_correct
     self.count_correct = results.select do |result|
       result.answer == result.answers.find_by(status: true)

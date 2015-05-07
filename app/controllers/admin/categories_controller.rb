@@ -16,6 +16,7 @@ class Admin::CategoriesController < ApplicationController
   def create
     @category = Category.new categorie_params
     if @category.save
+      flash[:success] = "Category is created"
       redirect_to admin_categories_path
     else
       render "new"
@@ -25,6 +26,7 @@ class Admin::CategoriesController < ApplicationController
   def update
     @category = Category.find params[:id]
     if @category.update_attributes categorie_params
+      flash[:success] = "Category is updated"
       redirect_to admin_categories_path
     else
       render "edit"

@@ -30,7 +30,7 @@ class LessonsController < ApplicationController
     @lesson.user_id = current_user.id
     
     if @lesson.save
-      redirect_to category_lesson_path  @category, @lesson
+      redirect_to category_lesson_path  @category, @lesson, check: 1
     else
       flash[:danger] = "Error every where !"
       redirect_to :back

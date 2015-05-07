@@ -11,7 +11,6 @@ class Relationship < ActiveRecord::Base
   before_destroy :unfollow_activity
 
   private
-
   def follow_activity
     create_activity follower_id, followed_id , "follow"
   end

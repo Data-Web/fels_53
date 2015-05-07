@@ -64,11 +64,12 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
 
   namespace :admin do
-    root :to => 'dashbroads#home'
+    root 'dashbroads#home'
     resources :categories
     resources :words
     resources :users
   end
+  
   resources :relationships, only: [:create, :destroy]
   resources :words, only: :index
   resources :categories, only: :index do

@@ -18,7 +18,6 @@ class Word < ActiveRecord::Base
   
   scope :random_words, ->user {Word.notlearn(user).order("random()").limit(20)}
   
-
   private
 
   def check_status
