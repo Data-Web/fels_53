@@ -1,0 +1,24 @@
+<% target = activity.return_target_object %>
+<% if activity.lesson? %>
+   <li>
+    <h4>
+      <b><%= activity.user.fullname %></b>
+      <%= activity.status %>
+      <b><%= target.category.name %></b>
+    <h4>
+    <small>
+      Ago: <%= time_ago_in_words(activity.created_at) %>
+    </small>
+  </li>
+<% else %>
+  <li>
+    <h4>
+      <b><%= activity.user.fullname %></b>
+      <%= activity.status %>
+      <b><%= target.fullname %></b>
+    <h4>
+    <small>
+      Ago: <%= time_ago_in_words(activity.created_at) %>
+    </small>
+  </li>
+<% end %>

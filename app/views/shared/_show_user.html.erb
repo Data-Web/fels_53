@@ -14,24 +14,14 @@
       <%= link_to words_path do %>
         <span class="label label-default">Words</span>
       <% end %>
-      <%= link_to "#", class: "lesson" do %>
+      <%= link_to categories_path, class: "lesson" do %>
         <span class="label label-default">Lesson</span>
       <% end %>
     </h1>
     <br/>
     <h3>Activities<hr/></h3>
       <ul class="lesson-categories">
-        <% @user_lessons.each do |user_lesson| %>
-          <li>
-            <h4>
-              <b><%= user_lesson.fullname %></b>
-              leanned: <%= user_lesson.category_name %>
-            <h4>
-            <small>
-              Correct: <%= user_lesson.count_correct %>/20
-            </small>
-          </li>
-        <% end %>
+        <%= render @activities %>
       </ul>
   </div>
 </div>

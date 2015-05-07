@@ -1,7 +1,7 @@
 <%= provide :title, 'Result' %>
 <h1>
   <span><%= @category.name %></span>
-  Result <span><%= "#{@lesson.sum_correct}/#{@lesson.results.count}" %></span>
+  Result <span><%= "#{@lesson.count_correct}/#{@lesson.results.count}" %></span>
 </h1>
 <div class="container">
   <table class="table table-bordered">

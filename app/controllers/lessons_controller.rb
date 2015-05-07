@@ -3,6 +3,11 @@ class LessonsController < ApplicationController
 
   before_action :logged_in_user
   
+  def index
+    @user = User.find current_user
+    @lessons = @user.lessons
+  end
+
   def new
     @category = Category.find params[:category_id]
     @lesson = @category.lessons.build user_id: current_user.id
